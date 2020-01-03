@@ -92,6 +92,7 @@ exports.getOasisFeed = async (req, res) => {
         title: '绿洲妹子图',
         subtitle: '每日分享绿洲美女图片，冲冲冲',
         id: 'https://u1qo.com/',
-        entries
+        entries,
+        updated: new Date(last * 1000)
     })
 }

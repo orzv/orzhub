@@ -71,3 +71,10 @@ function getUserObj(user) {
         return obj
     }
 }
+
+function guid() {
+    const rand = () => parseInt(Math.random() * 999999).toString().padStart(6, '0')
+    return [
+        rand(), rand(), rand(), rand()
+    ].join('-')
+}
