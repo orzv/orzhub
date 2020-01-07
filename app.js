@@ -26,7 +26,8 @@ module.exports = router(
     get('/', require('./actions/feed')),
     get('/test', require('./actions/weibo')),
     get('/stats', require('./actions/stats')),
-    post('/api', controlReducer)
+    post('/api', controlReducer),
+    get('/logs', require('./actions/logs'))
 )
 
 job({
