@@ -5,7 +5,8 @@ const { job } = require('cron')
 const { json, createError, sendError } = require('micro')
 
 const apis = {
-    addUser: require('./actions/addUser')
+    addUser: require('./actions/addUser'),
+    addExcludeWord: require('./actions/excludes').addWords
 }
 
 async function controlReducer(req, res) {
