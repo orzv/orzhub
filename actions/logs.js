@@ -7,7 +7,8 @@ module.exports = async function (req, res) {
     let list = await Logs.scan(null, null, 100)
     res.setHeader('Content-Type', 'text/plain')
     return (list || []).map(item => {
-        return getRowkeyDate(item._key).toISOString() + '\t'
-            + item.message
+        let time = getRowkeyDate(item._key)
+        time = time.toISOString().replace(/T|\.\d+|Z/g, ' ').trim()
+        return time + '\t' + item.message
     }).join('\n')
 }
