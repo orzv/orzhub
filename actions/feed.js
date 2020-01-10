@@ -1,12 +1,23 @@
-'use strict'
-
 const { table, getRowkeyDate } = require('../utils/common')
 const Feeds = table('feeds')
 const atom = require('../utils/atom')
+const getFeed = require('../utils/feed')
 
-module.exports = async function (req, res) {
+module.exports = async function () {
     let list = await Feeds.scan(null, null, 100)
-    res.setHeader('Content-Type', 'text/xml+atom')
+    return getFeed({
+        title: 'orzhub',
+        subtitle: 'Aho',
+        id: 'orzhub',
+        icon: '',
+        logo: '',
+        updated: new Date().toISOString(),
+        entries: list.map(item => {
+            let obj = Object.assign({}, item)
+            obj.id = 'orzhub:' + item._key
+            return obj
+        })
+    })
     return atom({
         title: 'orzhub',
         subtitle: 'Only you',

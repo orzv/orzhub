@@ -3,10 +3,9 @@
 const { table, getRowkeyDate } = require('../utils/common')
 const Logs = table('logs')
 
-module.exports = async function (req, res) {
-    let list = await Logs.scan(null, null, 100)
-    res.setHeader('Content-Type', 'text/plain')
-    return (list || []).map(item => {
+module.exports = async function () {
+    let list = await Logs.scan(null, null, 100) || []
+    return list.map(item => {
         let time = getRowkeyDate(item._key)
         time = time.toISOString().replace(/T|\.\d+|Z/g, ' ').trim()
         return time + '\t' + item.message

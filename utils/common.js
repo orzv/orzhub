@@ -4,23 +4,6 @@ const { createBTS } = require('btsc')
 const { createHash } = require('crypto')
 const { AK, SK, INSTANCE } = process.env
 
-exports.httpGet = function (url) {
-    return new Promise(resolve => {
-        /**
-         * @constant {'http' | 'https'}
-         */
-        let protocol = require('url').parse(url).protocol.slice(0, -1)
-
-        require(protocol).get(url, res => {
-            res.setEncoding('utf8')
-            let result = ''
-            res.on('data', str => result += str)
-            res.on('end', () => resolve(result))
-            res.on('error', resolve)
-        }).on('error', resolve)
-    })
-}
-
 exports.table = name => createBTS(`${AK}:${SK}@gz:${INSTANCE}/${name}`)
 
 exports.md5 = src => createHash('md5').update(src).digest('hex')

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title><%= title %></title>
+    <id><%= id %></id>
+    <updated><%= updated %></updated>
+    <generator>orzhub</generator>
+    <subtitle><%= subtitle %></subtitle>
+    <logo><%= logo %></logo>
+    <icon><%= icon %></icon>
+    <author>
+        <name>orzv</name>
+        <email>orzv@outlook.com</email>
+    </author>
+    <%= entries %>
+</feed>
